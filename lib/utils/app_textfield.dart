@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+
+class AppTextField extends StatelessWidget {
+  final String hintText;
+  final IconData? prefixIcon;
+  final IconData? suffixIcon;
+
+  const AppTextField({
+    super.key,
+    required this.hintText,
+    this.prefixIcon,
+    this.suffixIcon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: TextFormField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0), // Adjust the radius here
+          ),
+          suffixIcon: Icon(
+            suffixIcon,
+            color: const Color.fromARGB(255, 104, 13, 7),
+          ),
+          hintText: hintText,
+          prefixIcon: Icon(
+            prefixIcon,
+            color: Colors.grey,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AppTextFieldForModal extends StatelessWidget {
+  final String hintText;
+  final IconData? prefixIcon;
+  final IconData? suffixIcon;
+
+  const AppTextFieldForModal({
+    super.key,
+    required this.hintText,
+    this.prefixIcon,
+    this.suffixIcon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: TextFormField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12.0), // Adjust the radius here
+          ),
+          suffixIcon: Icon(
+            suffixIcon,
+            color: const Color.fromARGB(255, 104, 13, 7),
+          ),
+          hintText: hintText,
+          hintStyle: TextStyle(
+            color: Colors.black,
+          ),
+          prefixIcon: Icon(
+            prefixIcon,
+            color: Colors.grey,
+          ),
+        ),
+      ),
+    );
+  }
+}

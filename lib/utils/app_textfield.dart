@@ -4,12 +4,15 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
-
+  final TextEditingController controller;
+  final TextInputType? keyboardType;
   const AppTextField({
     super.key,
     required this.hintText,
     this.prefixIcon,
     this.suffixIcon,
+    required this.controller,
+    this.keyboardType,
   });
 
   @override
@@ -17,6 +20,8 @@ class AppTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: TextFormField(
+        keyboardType: keyboardType,
+        controller: controller,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0), // Adjust the radius here
@@ -40,12 +45,14 @@ class AppTextFieldForModal extends StatelessWidget {
   final String hintText;
   final IconData? prefixIcon;
   final IconData? suffixIcon;
+  final TextEditingController controller;
 
   const AppTextFieldForModal({
     super.key,
     required this.hintText,
     this.prefixIcon,
     this.suffixIcon,
+    required this.controller,
   });
 
   @override
@@ -53,6 +60,7 @@ class AppTextFieldForModal extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.0), // Adjust the radius here

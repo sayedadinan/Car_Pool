@@ -1,10 +1,11 @@
 import 'package:car_pool/screens/login_screen.dart';
+import 'package:car_pool/screens/map_screen.dart';
 import 'package:car_pool/utils/app_logo_text.dart';
 import 'package:car_pool/utils/app_sizedbox.dart';
 import 'package:car_pool/utils/mediaquery.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BoardingScreen extends StatelessWidget {
   const BoardingScreen({super.key});
@@ -14,10 +15,18 @@ class BoardingScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: GestureDetector(
-          onTap: () {
-            Get.to(const LoginScreen(),
-                transition: Transition.fadeIn,
-                duration: const Duration(seconds: 5));
+          onTap: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            String? phone = prefs.getString('phoneNumber');
+            if (phone == null) {
+              Get.to(const LoginScreen(),
+                  transition: Transition.fadeIn,
+                  duration: const Duration(seconds: 5));
+            } else {
+              Get.to(const MapScreen(),
+                  transition: Transition.fadeIn,
+                  duration: const Duration(seconds: 5));
+            }
           },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

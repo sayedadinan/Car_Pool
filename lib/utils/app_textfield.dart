@@ -70,7 +70,7 @@ class AppTextFieldForModal extends StatelessWidget {
             color: const Color.fromARGB(255, 104, 13, 7),
           ),
           hintText: hintText,
-          hintStyle: TextStyle(
+          hintStyle: const TextStyle(
             color: Colors.black,
           ),
           prefixIcon: Icon(

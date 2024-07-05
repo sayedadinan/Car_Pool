@@ -137,7 +137,7 @@ class LoginScreen extends StatelessWidget {
                       context); // Show OTP entry modal on successful OTP send
                 } catch (e) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                         content: Text(
                             'Failed to send OTP. Please check your network connection.')),
                   );

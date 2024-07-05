@@ -19,7 +19,7 @@ class AppButton extends StatelessWidget {
         height: mediaqueryheight(0.07, context),
         width: mediaquerywidth(0.9, context),
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 37, 184, 42),
+            color: const Color.fromARGB(255, 37, 184, 42),
             borderRadius: BorderRadius.circular(9)),
         child: Center(
           child: SizedBox(

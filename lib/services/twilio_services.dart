@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:twilio_flutter/twilio_flutter.dart';
 
 class TwilioService {
@@ -7,9 +8,9 @@ class TwilioService {
 
   TwilioService() {
     twilioFlutter = TwilioFlutter(
-      accountSid: 'AC9e12f6b756d78512edd8f088d74534f9',
-      authToken: 'f0a28969b797cf253c412708988ca7d9',
-      twilioNumber: '+13342125850',
+      accountSid: dotenv.env['TWILIO_ACCOUNT_SID']!,
+      authToken: dotenv.env['TWILIO_AUTH_TOKEN']!,
+      twilioNumber: dotenv.env['TWILIO_NUMBER']!,
     );
   }
 
@@ -20,9 +21,8 @@ class TwilioService {
         toNumber: phoneNumber,
         messageBody: 'Your OTP code is: $otp',
       );
-      log('OTP sent successfully to $phoneNumber'); // Debugging info
+      log('OTP sent successfully to $phoneNumber');
     } catch (e) {
-      // Handle specific Twilio errors or generic errors
       print('Error sending OTP: $e');
       throw Exception('Failed to send OTP. Please try again later.');
     }

@@ -1,5 +1,5 @@
-import 'package:car_pool/screens/login_screen.dart';
 import 'package:car_pool/screens/map_screen.dart';
+import 'package:car_pool/screens/sign_in.dart';
 import 'package:car_pool/utils/app_logo_text.dart';
 import 'package:car_pool/utils/app_sizedbox.dart';
 import 'package:car_pool/utils/mediaquery.dart';
@@ -19,7 +19,7 @@ class BoardingScreen extends StatelessWidget {
             SharedPreferences prefs = await SharedPreferences.getInstance();
             String? phone = prefs.getString('phoneNumber');
             if (phone == null) {
-              Get.to(const LoginScreen(),
+              Get.to(SignInScreen(),
                   transition: Transition.fadeIn,
                   duration: const Duration(seconds: 5));
             } else {

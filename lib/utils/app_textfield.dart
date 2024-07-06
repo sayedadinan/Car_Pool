@@ -6,6 +6,7 @@ class AppTextField extends StatelessWidget {
   final IconData? suffixIcon;
   final TextEditingController controller;
   final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
   const AppTextField({
     super.key,
     required this.hintText,
@@ -13,6 +14,7 @@ class AppTextField extends StatelessWidget {
     this.suffixIcon,
     required this.controller,
     this.keyboardType,
+    this.validator,
   });
 
   @override
@@ -20,6 +22,7 @@ class AppTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: TextFormField(
+        validator: validator,
         keyboardType: keyboardType,
         controller: controller,
         decoration: InputDecoration(

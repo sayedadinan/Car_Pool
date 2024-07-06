@@ -1,152 +1,111 @@
 import 'package:car_pool/screens/map_screen.dart';
-import 'package:car_pool/viewmodals/auth_viewmodal.dart';
-import 'package:flutter/material.dart';
+import 'package:car_pool/screens/sign_in.dart';
 import 'package:car_pool/utils/app_button.dart';
 import 'package:car_pool/utils/app_logo_text.dart';
 import 'package:car_pool/utils/app_sizedbox.dart';
 import 'package:car_pool/utils/app_text.dart';
 import 'package:car_pool/utils/app_textfield.dart';
 import 'package:car_pool/utils/mediaquery.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final TextEditingController phoneController = TextEditingController();
-final TextEditingController otpController = TextEditingController();
-final TextEditingController nameController = TextEditingController();
-final TextEditingController emailController = TextEditingController();
+TextEditingController loginPhone = TextEditingController();
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  // Method to show the modal dialog
-  void _showModal(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(12)),
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Text(
-                  'Verify your Mobile',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: mediaquerywidth(0.05, context),
-                      fontWeight: FontWeight.w500),
-                ),
-                const Text(
-                  'Verification code has been sent to your\n   registered mobile XXX XXX 565',
-                  style: TextStyle(color: Colors.black),
-                ),
-                const SizedBox(height: 10),
-                AppTextFieldForModal(
-                  controller: otpController,
-                  hintText: '          Enter OTP',
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                        onPressed: () async {
-                          String enteredOtp = otpController.text;
-                          if (Provider.of<AuthViewModel>(context, listen: false)
-                              .verifyOTP(enteredOtp)) {
-                            SharedPreferences preferences =
-                                await SharedPreferences.getInstance();
-                            await preferences.setString(
-                                'phoneNumber', phoneController.text);
-                            Get.off(const MapScreen());
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Invalid OTP'),
-                                backgroundColor: Colors.red,
-                              ),
-                            );
-                          }
-                        },
-                        child: Text(
-                          'Verify Code',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: mediaquerywidth(0.04, context),
-                              color: const Color.fromARGB(255, 2, 64, 116)),
-                        ))
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    // Determine if the keyboard is open
+    // final bottomInset = MediaQuery.of(context).bottom;
+
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const CustomSizedBoxHeight(0.12),
-            const LogoText(),
-            const CustomSizedBoxHeight(0.04),
-            AppTextField(
-              keyboardType: TextInputType.phone,
-              controller: phoneController,
-              hintText: 'Mobile Number',
-              prefixIcon: Icons.call_outlined,
-              suffixIcon: Icons.remove_circle_outline,
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        children: [
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              width: double.infinity,
+              height: mediaqueryheight(0.6, context),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image:
+                      AssetImage('assets/car_top_image-removebg-blurred.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-            AppTextField(
-              hintText: 'Full Name',
-              controller: nameController,
-            ),
-            AppTextField(
-              hintText: 'Email',
-              controller: emailController,
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: mediaquerywidth(0.05, context)),
-              child: const Row(
+          ),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 320),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(
-                    text:
-                        'By clicking continue, you agree to our \nTerms of Service & Privacy Policy',
-                    fontSize: 0.04,
+                  SizedBox(height: mediaqueryheight(0.1, context)),
+                  Column(
+                    children: [
+                      const LogoText(),
+                      AppTextField(
+                        hintText: 'Enter your phone',
+                        controller: loginPhone,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: mediaqueryheight(0.3, context)),
+                  AppButton(
+                    onPressed: () async {
+                      SharedPreferences prefs =
+                          await SharedPreferences.getInstance();
+                      String? phoneNumber = prefs.getString('phoneNumber');
+                      String companyNumber = '9895000111';
+                      if (phoneNumber == loginPhone.text ||
+                          companyNumber == loginPhone.text) {
+                        Get.to(const MapScreen());
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: CustomText(
+                              text: 'Your phone number is not verified',
+                              fontSize: 0.03,
+                            ),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                  const CustomSizedBoxHeight(0.02),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: mediaquerywidth(0.07, context)),
+                    child: Row(
+                      children: [
+                        const Text(
+                          'Dont you have account ? ',
+                          style: TextStyle(fontSize: 17),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(SignInScreen());
+                          },
+                          child: const CustomText(
+                            text: 'Sign In',
+                            fontSize: 0.04,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
-            const CustomSizedBoxHeight(0.02),
-            AppButton(
-              onPressed: () async {
-                String phoneNumber = phoneController.text;
-                try {
-                  // Ensure the phone number is formatted correctly
-                  // String formattedPhoneNumber = '+91$phoneNumber';
-                  await Provider.of<AuthViewModel>(context, listen: false)
-                      .sendOTP(phoneNumber);
-                  _showModal(
-                      context); // Show OTP entry modal on successful OTP send
-                } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                        content: Text(
-                            'Failed to send OTP. Please check your network connection.')),
-                  );
-                }
-              },
-            ),
-            const CustomSizedBoxHeight(0.05),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

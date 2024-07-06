@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:twilio_flutter/twilio_flutter.dart';
 
 class TwilioService {
@@ -8,9 +7,9 @@ class TwilioService {
 
   TwilioService() {
     twilioFlutter = TwilioFlutter(
-      accountSid: dotenv.env['TWILIO_ACCOUNT_SID']!,
-      authToken: dotenv.env['TWILIO_AUTH_TOKEN']!,
-      twilioNumber: dotenv.env['TWILIO_NUMBER']!,
+      accountSid: 'AC9e12f6b756d78512edd8f088d74534f9',
+      authToken: 'ed8be8f7da80b752f09f9b9c21764dec',
+      twilioNumber: '+13342125850',
     );
   }
 

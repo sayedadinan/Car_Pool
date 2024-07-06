@@ -1,9 +1,9 @@
+import 'package:car_pool/screens/login_screen.dart';
 import 'package:car_pool/screens/test_page.dart';
 import 'package:car_pool/utils/app_sizedbox.dart';
 import 'package:car_pool/utils/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
   const CustomDrawerWidget({
@@ -41,8 +41,13 @@ class CustomDrawerWidget extends StatelessWidget {
           const ListTile(
               leading: Icon(Icons.settings), title: Text('Settings')),
           const ListTile(leading: Icon(Icons.person), title: Text('Profile')),
-          const ListTile(
-              leading: Icon(Icons.logout_outlined), title: Text('Sign Out')),
+          ListTile(
+            leading: const Icon(Icons.logout_outlined),
+            title: const Text('Sign Out'),
+            onTap: () {
+              Get.off(const LoginScreen());
+            },
+          ),
         ],
       ),
     );

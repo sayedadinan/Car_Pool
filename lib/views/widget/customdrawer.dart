@@ -1,7 +1,7 @@
-import 'package:car_pool/screens/login_screen.dart';
-import 'package:car_pool/screens/test_page.dart';
+import 'package:car_pool/views/screens/login_screen.dart';
+import 'package:car_pool/views/screens/test_page.dart';
 import 'package:car_pool/utils/app_sizedbox.dart';
-import 'package:car_pool/utils/app_text.dart';
+import 'package:car_pool/utils/constant/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
 import 'package:car_pool/utils/app_sizedbox.dart';
-import 'package:car_pool/widget/customdrawer.dart';
-import 'package:car_pool/widget/mapwidget.dart';
+import 'package:car_pool/views/widget/customdrawer.dart';
+import 'package:car_pool/views/widget/mapwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 
@@ -254,13 +254,6 @@ class _MapScreenState extends State<MapScreen> {
       ),
     );
   }
-
-  // @override
-  // void dispose() {
-  //   fromController.dispose();
-  //   toController.dispose();
-  //   super.dispose();
-  // }
 }
 
 Widget buildBottomNavigationItem(

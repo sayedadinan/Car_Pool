@@ -1,7 +1,7 @@
-import 'package:car_pool/screens/boarding_screen.dart';
-import 'package:car_pool/utils/app_logo_text.dart';
+import 'package:car_pool/views/screens/boarding_screen.dart';
+import 'package:car_pool/utils/constant/app_logo_text.dart';
 import 'package:car_pool/utils/app_sizedbox.dart';
-import 'package:car_pool/utils/app_text.dart';
+import 'package:car_pool/utils/constant/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -58,10 +58,10 @@ class _SplashScreenMovingState extends State<SplashScreenMoving>
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: GestureDetector(
-          onTap: _startAnimation,
-          child: Center(
+      child: GestureDetector(
+        onTap: _startAnimation,
+        child: Scaffold(
+          body: Center(
             child: Column(
               children: [
                 const Spacer(flex: 2),

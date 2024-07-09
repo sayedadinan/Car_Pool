@@ -1,8 +1,8 @@
-import 'package:car_pool/viewmodals/auth_viewmodal.dart';
+import 'package:car_pool/viewmodels/auth_viewmodal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
-import 'screens/splash_screen_moving.dart';
+import 'views/screens/splash_screen_moving.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

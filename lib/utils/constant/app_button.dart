@@ -1,4 +1,4 @@
-import 'package:car_pool/utils/app_text.dart';
+import 'package:car_pool/utils/constant/app_text.dart';
 import 'package:car_pool/utils/mediaquery.dart';
 import 'package:flutter/material.dart';
 

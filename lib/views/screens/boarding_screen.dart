@@ -1,6 +1,6 @@
-import 'package:car_pool/screens/map_screen.dart';
-import 'package:car_pool/screens/sign_in.dart';
-import 'package:car_pool/utils/app_logo_text.dart';
+import 'package:car_pool/views/screens/map_screen.dart';
+import 'package:car_pool/views/screens/sign_in.dart';
+import 'package:car_pool/utils/constant/app_logo_text.dart';
 import 'package:car_pool/utils/app_sizedbox.dart';
 import 'package:car_pool/utils/mediaquery.dart';
 import 'package:flutter/material.dart';
